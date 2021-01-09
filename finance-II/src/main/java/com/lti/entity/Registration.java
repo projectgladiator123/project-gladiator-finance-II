@@ -17,5 +17,4 @@ public class Registration {
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
 	}
-	
 }
