@@ -24,7 +24,7 @@ public class Product {
 	@Column(name = "Product_Id")
 	private String productDetails;
 	
-	private EligibilityType eligibility;
+	private String eligibility;
 	
 	private int quantity;
 	
@@ -34,10 +34,7 @@ public class Product {
 	@Column(name = "IMAGE")
 	private String productImage;
 	
-	
-	public static enum EligibilityType{
-		GOLD,PLATINUM
-	}
+
 
 
 	public int getProductId() {
@@ -90,12 +87,18 @@ public class Product {
 	}
 
 
-	public EligibilityType getEligibility() {
+
+
+
+	
+
+
+	public String getEligibility() {
 		return eligibility;
 	}
 
 
-	public void setEligibility(EligibilityType eligibility) {
+	public void setEligibility(String eligibility) {
 		this.eligibility = eligibility;
 	}
 
