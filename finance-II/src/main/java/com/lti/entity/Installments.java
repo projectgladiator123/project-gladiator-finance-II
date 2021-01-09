@@ -1,17 +1,17 @@
 package com.lti.entity;
 
 import java.time.LocalDate;
-
+import com.lti.entity.Purchases;
 import javax.persistence.*;
 
 @Entity
 public class Installments {
 	  @Id
-	  @GeneratedValue(strategy = GenerationType.IDENTITY)
+	  @GeneratedValue
 	  @Column(name="Id")
 	  private int id;
-	  @Column(name="PurchaseId")
-	  private int purchase_id;
+	  @Column(name="Purchase_Id")
+	  Purchases Pid=new Purchases();
 	  @Column(name="Payment_Date")
 	  private LocalDate paymentDate;
 	  @Column(name="Amount_Paid")
@@ -26,11 +26,12 @@ public class Installments {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getPurchase_id() {
-		return purchase_id;
+	
+	public Purchases getPid() {
+		return Pid;
 	}
-	public void setPurchase_id(int purchase_id) {
-		this.purchase_id = purchase_id;
+	public void setPid(Purchases pid) {
+		Pid = pid;
 	}
 	public LocalDate getPaymentDate() {
 		return paymentDate;
