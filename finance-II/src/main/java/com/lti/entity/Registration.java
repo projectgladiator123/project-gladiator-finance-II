@@ -2,10 +2,12 @@ package com.lti.entity;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Registration {
@@ -50,6 +52,9 @@ private String ifscCode;
 
 @Column(name = "Card_Status")
 private String userStatus;
+
+@OneToOne(cascade = CascadeType.ALL, mappedBy = "registration")
+private EMICard emiCard;
 
 public int getUserId() {
 	return userId;

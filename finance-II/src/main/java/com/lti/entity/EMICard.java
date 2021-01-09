@@ -29,7 +29,7 @@ public class EMICard {
 	@Column(name = "Balance")
 	private double balance;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name = "User_Id")
 	private Registration registration;
 
