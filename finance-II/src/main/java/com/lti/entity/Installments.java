@@ -7,63 +7,56 @@ import javax.persistence.*;
 @Entity
 public class Installments {
 	  @Id
-	 
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	  
+	  @GeneratedValue(strategy = GenerationType.IDENTITY)
+	  @Column(name="Id")
 	  private int id;
+	  @Column(name="PurchaseId")
 	  private int purchase_id;
-	  private LocalDate Payment_Date;
-	  private long Amount_Paid;
-	  private LocalDate Due_Date;
-	  
-	    private String status;
-	  public int getId() {
+	  @Column(name="Payment_Date")
+	  private LocalDate paymentDate;
+	  @Column(name="Amount_Paid")
+	  private long amountPaid;
+	  @Column(name="Due_Date")
+	  private LocalDate dueDate;
+	  @Column(name="Status")
+	  private String status;
+	public int getId() {
 		return id;
 	}
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
 	public int getPurchase_id() {
 		return purchase_id;
 	}
-
 	public void setPurchase_id(int purchase_id) {
 		this.purchase_id = purchase_id;
 	}
-
-	public LocalDate getPayment_Date() {
-		return Payment_Date;
+	public LocalDate getPaymentDate() {
+		return paymentDate;
 	}
-
-	public void setPayment_Date(LocalDate payment_Date) {
-		Payment_Date = payment_Date;
+	public void setPaymentDate(LocalDate paymentDate) {
+		this.paymentDate = paymentDate;
 	}
-
-	public long getAmount_Paid() {
-		return Amount_Paid;
+	public long getAmountPaid() {
+		return amountPaid;
 	}
-
-	public void setAmount_Paid(long amount_Paid) {
-		Amount_Paid = amount_Paid;
+	public void setAmountPaid(long amountPaid) {
+		this.amountPaid = amountPaid;
 	}
-
-	public LocalDate getDue_Date() {
-		return Due_Date;
+	public LocalDate getDueDate() {
+		return dueDate;
 	}
-
-	public void setDue_Date(LocalDate due_Date) {
-		Due_Date = due_Date;
+	public void setDueDate(LocalDate dueDate) {
+		this.dueDate = dueDate;
 	}
-
 	public String getStatus() {
 		return status;
 	}
-
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	 
 
 	
 	   
