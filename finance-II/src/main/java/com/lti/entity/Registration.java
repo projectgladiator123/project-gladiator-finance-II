@@ -1,9 +1,13 @@
 package com.lti.entity;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Registration {
 
 	private int customerId;
 	private String customerName;
+	
 	
 	public int getCustomerId() {
 		return customerId;
