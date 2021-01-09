@@ -1,7 +1,6 @@
 package com.lti.entity;
 
 import java.time.LocalDate;
-import com.lti.entity.Purchases;
 import javax.persistence.*;
 
 @Entity
@@ -26,6 +25,8 @@ public class Installments {
 	  private String status;
 	  
 	  
+	  @ManyToOne
+	  @JoinColumn(name = "Purchase_Id")
 	  private Purchases purchases;
 
 

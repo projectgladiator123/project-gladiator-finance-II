@@ -1,12 +1,14 @@
 package com.lti.entity;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -56,12 +58,42 @@ private String userStatus;
 @OneToOne(cascade = CascadeType.ALL, mappedBy = "registration")
 private EMICard emiCard;
 
+@OneToMany(mappedBy = "registration")
+private List<Purchases> purchases; 
+
+@OneToMany(mappedBy = "registration")
+private List<ProductReview> reviews;
+
 public int getUserId() {
 	return userId;
 }
 
 public void setUserId(int userId) {
 	this.userId = userId;
+}
+
+public EMICard getEmiCard() {
+	return emiCard;
+}
+
+public void setEmiCard(EMICard emiCard) {
+	this.emiCard = emiCard;
+}
+
+public List<Purchases> getPurchases() {
+	return purchases;
+}
+
+public void setPurchases(List<Purchases> purchases) {
+	this.purchases = purchases;
+}
+
+public List<ProductReview> getReviews() {
+	return reviews;
+}
+
+public void setReviews(List<ProductReview> reviews) {
+	this.reviews = reviews;
 }
 
 public String getName() {

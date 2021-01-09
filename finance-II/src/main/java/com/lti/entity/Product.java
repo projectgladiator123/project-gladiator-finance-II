@@ -1,9 +1,13 @@
 package com.lti.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Product {
@@ -35,7 +39,12 @@ public class Product {
 	private String productImage;
 	
 
+	@OneToMany(mappedBy = "product")
+	private List<Purchases> purchases;
 
+	@OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
+	private List<ProductReview> reviews;
+	
 
 	public int getProductId() {
 		return productId;
@@ -44,6 +53,26 @@ public class Product {
 
 	public void setProductId(int productId) {
 		this.productId = productId;
+	}
+
+
+	public List<Purchases> getPurchases() {
+		return purchases;
+	}
+
+
+	public void setPurchases(List<Purchases> purchases) {
+		this.purchases = purchases;
+	}
+
+
+	public List<ProductReview> getReviews() {
+		return reviews;
+	}
+
+
+	public void setReviews(List<ProductReview> reviews) {
+		this.reviews = reviews;
 	}
 
 

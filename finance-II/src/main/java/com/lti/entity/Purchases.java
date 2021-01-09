@@ -1,24 +1,41 @@
 package com.lti.entity;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Purchases {
 
+	public List<Installments> getInstallments() {
+		return installments;
+	}
+	public void setInstallments(List<Installments> installments) {
+		this.installments = installments;
+	}
 	@Id
 	@GeneratedValue
 	@Column(name="Id")
 	private int id;
 	
-	
+	@ManyToOne
+	@JoinColumn(name = "User_Id")
 	private Registration registration;
+	
+	@ManyToOne
+	@JoinColumn(name = "Product_Id")
 	private Product product;
+	
+	@OneToMany(mappedBy = "purchases", cascade = CascadeType.MERGE)
+	private List<Installments> installments;
 	
 	@Column(name="Tenure_Period_Opted")
 	private int tenurePeriodOpted;
@@ -26,6 +43,9 @@ public class Purchases {
 	@Column(name="Date_Of_Purchase")
 	private LocalDate dateOfPurchase;
 	
+	
+	@ManyToOne
+	@JoinColumn(name = "Card_No")
 	private EMICard emiCard;
 	
 	@Column(name="Remaining_Amount")

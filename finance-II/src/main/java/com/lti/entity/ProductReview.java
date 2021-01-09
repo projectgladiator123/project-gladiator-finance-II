@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,8 +17,12 @@ public class ProductReview {
 	@Column(name="Review_Id")
 	private int reviewId;
 	
+	@ManyToOne
+	@JoinColumn(name = "User_Id")
 	private Registration  registration;
 	
+	@ManyToOne
+	@JoinColumn(name = "Product_Id")
 	private Product product;
 	
 	@Column(name="Review")
