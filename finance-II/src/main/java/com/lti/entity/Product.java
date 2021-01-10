@@ -8,8 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Product")
 public class Product {
 	
 	@Id
@@ -17,7 +19,7 @@ public class Product {
 	@Column(name = "Product_Id")
 	private int productId;
 	
-	@Column(name = "Product_name")
+	@Column(name = "Product_name" )
 	private String productName;
 	
 	private String vendor;
@@ -25,7 +27,7 @@ public class Product {
 	@Column(name = "Price")
 	private double productPrice;
 	
-	@Column(name = "Product_Id")
+	@Column(name = "Details")
 	private String productDetails;
 	
 	private String eligibility;
