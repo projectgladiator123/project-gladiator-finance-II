@@ -61,9 +61,11 @@ private String ifscCode;
 private String userStatus;
 
 @OneToOne(cascade = CascadeType.ALL, mappedBy = "registration")
+@JsonIgnore
 private EMICard emiCard;
 
-@OneToMany(mappedBy = "registration",fetch = FetchType.EAGER)
+@OneToMany(mappedBy = "registration")
+@JsonIgnore
 private List<Purchases> purchases; 
 
 @JsonIgnore
