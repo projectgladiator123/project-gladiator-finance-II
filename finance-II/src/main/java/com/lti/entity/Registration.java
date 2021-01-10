@@ -6,11 +6,14 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "REGISTRATION")
@@ -60,9 +63,10 @@ private String userStatus;
 @OneToOne(cascade = CascadeType.ALL, mappedBy = "registration")
 private EMICard emiCard;
 
-@OneToMany(mappedBy = "registration")
+@OneToMany(mappedBy = "registration",fetch = FetchType.EAGER)
 private List<Purchases> purchases; 
 
+@JsonIgnore
 @OneToMany(mappedBy = "registration")
 private List<ProductReview> reviews;
 

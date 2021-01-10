@@ -34,7 +34,7 @@ public class Product {
 	
 	private int quantity;
 	
-	@Column(name = "Max_Tenure_Period(Months)")
+	@Column(name = "Max_Tenure_Period")
 	private int maxTenure;
 	
 	@Column(name = "IMAGE")
