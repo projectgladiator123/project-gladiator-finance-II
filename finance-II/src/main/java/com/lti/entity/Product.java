@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "PRODUCT")
 public class Product {
@@ -41,9 +43,11 @@ public class Product {
 	private String productImage;
 	
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "product")
 	private List<Purchases> purchases;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
 	private List<ProductReview> reviews;
 	

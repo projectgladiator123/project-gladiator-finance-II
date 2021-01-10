@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "EMI_CARD")
 public class EMICard {
@@ -30,12 +32,18 @@ public class EMICard {
 	@Column(name = "Balance")
 	private double balance;
 
+	
+	
 	@OneToOne
 	@JoinColumn(name = "User_Id")
 	private Registration registration;
 	
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "emiCard")
 	private List<Purchases> purchases; 
+	
+	
 
 	public long getCardNo() {
 		return cardNo;

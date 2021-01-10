@@ -17,6 +17,13 @@ public class ProductReview {
 	@Column(name="Review_Id")
 	private int reviewId;
 	
+	@Column(name="Review")
+	private String review;
+	
+	@Column(name="Rating")
+	private int rating;
+	
+	
 	@ManyToOne
 	@JoinColumn(name = "User_Id")
 	private Registration  registration;
@@ -25,11 +32,6 @@ public class ProductReview {
 	@JoinColumn(name = "Product_Id")
 	private Product product;
 	
-	@Column(name="Review")
-	private String review;
-	
-	@Column(name="Rating")
-	private int rating;
 
 	public int getReviewId() {
 		return reviewId;

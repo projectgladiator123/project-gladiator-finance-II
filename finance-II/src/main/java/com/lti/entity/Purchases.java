@@ -13,20 +13,33 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "PURCHASES")
 public class Purchases {
 
-	public List<Installments> getInstallments() {
-		return installments;
-	}
-	public void setInstallments(List<Installments> installments) {
-		this.installments = installments;
-	}
+	
 	@Id
 	@GeneratedValue
 	@Column(name="Id")
 	private int id;
+	
+	
+	@Column(name="Tenure_Period_Opted")
+	private int tenurePeriodOpted;
+	
+	@Column(name="Date_Of_Purchase")
+	private LocalDate dateOfPurchase;
+	
+	
+	@Column(name="Remaining_Amount")
+	private double remainingAmount;
+	
+	@Column(name="Installments_Remaining")
+	private int installmentsRemaining;
+	
+	
 	
 	@ManyToOne
 	@JoinColumn(name = "User_Id")
@@ -36,25 +49,16 @@ public class Purchases {
 	@JoinColumn(name = "Product_Id")
 	private Product product;
 	
-	@OneToMany(mappedBy = "purchases", cascade = CascadeType.MERGE)
-	private List<Installments> installments;
-	
-	@Column(name="Tenure_Period_Opted")
-	private int tenurePeriodOpted;
-	
-	@Column(name="Date_Of_Purchase")
-	private LocalDate dateOfPurchase;
-	
-	
 	@ManyToOne
 	@JoinColumn(name = "Card_No")
 	private EMICard emiCard;
 	
-	@Column(name="Remaining_Amount")
-	private double remainingAmount;
 	
-	@Column(name="Installments_Remaining")
-	private int installmentsRemaining;
+	@JsonIgnore
+	@OneToMany(mappedBy = "purchases", cascade = CascadeType.MERGE)
+	private List<Installments> installments;
+	
+	
 	
 	public int getId() {
 		return id;
@@ -105,6 +109,12 @@ public class Purchases {
 		this.installmentsRemaining = installmentsRemaining;
 	}
 	
+	public List<Installments> getInstallments() {
+		return installments;
+	}
+	public void setInstallments(List<Installments> installments) {
+		this.installments = installments;
+	}
 	
 	
 }
