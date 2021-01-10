@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
@@ -20,8 +21,14 @@ public class UserDetailsRepository extends GenericRepository {
 		return entityManager.createQuery("select r from Registration r").getResultList();
 	}
 	
+	@Transactional
 	public void deleteUser(int userId) {
 		entityManager.createQuery("delete from Registration r where r.userId = :userId").setParameter("userId", userId).executeUpdate();
+	}
+	
+	@Transactional
+	public void updateStatus(int userId) {
+		entityManager.createQuery("update Registration r set r.userStatus = :status  where r.userId = :userId").setParameter("userId", userId).setParameter("status", "activated").executeUpdate();
 	}
 
 }

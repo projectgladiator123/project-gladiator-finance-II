@@ -18,4 +18,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		return userDetailsRepository.fetchAllUser();
 	}
 
+	public void delete(int userId) {
+		userDetailsRepository.deleteUser(userId);		
+	}
+
+	public void updateStatus(int userId) {
+		userDetailsRepository.updateStatus(userId);		
+	}
+
 }
