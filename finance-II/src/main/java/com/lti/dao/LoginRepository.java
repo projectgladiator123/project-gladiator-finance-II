@@ -6,23 +6,23 @@ import org.springframework.stereotype.Repository;
 public class LoginRepository extends GenericRepository {
 	
 	
-public boolean isCustomerPresent(String email) {
+public boolean isCustomerPresent(String username) {
 		
 		//Query q=entityManager.createQuery("select c from Customer c where c.email:em");
 		//q.setParameter(, value)
 		
-		return (Long) entityManager.createQuery("select count(r.userId) from Registration r where r.email = :email")
-				.setParameter("email", email)
+		return (Long) entityManager.createQuery("select count(r.userId) from Registration r where r.username = :username")
+				.setParameter("username", username)
 				.getSingleResult() ==1 ? true :false;
 		//count returns long and getSingleResult returns here object hence we typecasted it to long
 	}
 	
-	public int findByEmailAndPassword(String email,String password) {
+	public int findByUserNameAndPassword(String username,String password) {
 		
 		return (Integer)
 				entityManager
-				.createQuery("select r.id from Registration r where r.email = :email and r.password = :password")
-				.setParameter("email", email)
+				.createQuery("select r.id from Registration r where r.username = :email and r.password = :password")
+				.setParameter("email", username)
 				.setParameter("password", password)
 				.getSingleResult();
 	}
