@@ -12,9 +12,11 @@ import com.lti.entity.Product;
 public class ProductInfoRepository extends GenericRepository {
     
 	@SuppressWarnings("unchecked")
-	public List<Product> fetchProductInfo(){
+	public Product fetchProductInfo(int productId){
 		
-		return entityManager.createQuery("select p.productImage,p.productName,p.productDetails,p.productPrice,p.maxTenure from Product p").getResultList();
+		return (Product) entityManager.createQuery("select p from Product p where p.productId =: productId")
+				.setParameter("productId", productId)
+				.getSingleResult();
 	}
 	
 	
