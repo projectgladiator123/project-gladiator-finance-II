@@ -14,9 +14,9 @@ public class ProductInfoServiceImpl implements ProductInfoService {
 	@Autowired
 	ProductInfoRepository productInfoRepository;
 	
-	public List<Product> fetchProductdetails() {
+	public Product fetchProductdetails(int productId) {
 		
-		return productInfoRepository.fetchProductInfo();
+		return productInfoRepository.fetchProductInfo(productId);
 	}
 
 }
