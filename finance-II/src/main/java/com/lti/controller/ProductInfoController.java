@@ -21,6 +21,6 @@ public class ProductInfoController {
 	@GetMapping("/product-info")
 	public Product fetchProductDetails(int productId){
 		
-		return productInfoService.fetchProductdetails(productId);
+		return productInfoService.fetchProductdetailsByProductId(productId);
 	}
 }
