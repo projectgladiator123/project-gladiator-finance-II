@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lti.entity.EMICard;
+import com.lti.entity.Installments;
 import com.lti.entity.Purchases;
 import com.lti.service.DashBoardService;
 
@@ -26,6 +27,11 @@ public class DashBoardController {
 	@GetMapping("/dashboard-purchase-history")
 	public List<Purchases> fetchPurchase(int userId){
 		return dashBoardService.getPurchaseHistory(userId);
+	}
+	
+	@GetMapping("/dashboard-installment-history")
+	public List<Installments> fetchInstallments(int id){
+		return dashBoardService.getInstallmentHistory(id);
 	}
 
 }
