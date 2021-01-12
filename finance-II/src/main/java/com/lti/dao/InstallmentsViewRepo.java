@@ -14,7 +14,7 @@ public class InstallmentsViewRepo extends GenericRepository{
 	@PersistenceContext
 	EntityManager entityManager;
 	@SuppressWarnings("unchecked")
-	public List<Installments> fetchAllInstallme(){
+	public List<Installments> fetchAllInstallments(){
 		return entityManager.createQuery("select it from Installments it").getResultList();
 		
 	}
