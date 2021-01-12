@@ -6,9 +6,8 @@ import com.lti.entity.ProductReview;
 
 
 public interface ProductReviewService {
-	public List<ProductReview> showAllR();
-	public List<ProductReview> fetchReviewbyUser();
-	public List<ProductReview> fetchReviewbyProduct();
+	public List<ProductReview> fetchbyUser(int userId);
+	public List<ProductReview> fetchbyProduct(int productId);
 	
 	public void deleteUserReview(int userId);
 
