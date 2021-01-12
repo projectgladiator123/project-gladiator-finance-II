@@ -35,8 +35,6 @@
 	    </property>
 	    <property name="jpaProperties">
 	        <props>
-	            <!-- <prop key="hibernate.hbm2ddl.auto">validate</prop>  -->
-	           <!--   <prop key="hibernate.hbm2ddl.auto">update</prop> -->
 	            <prop key="hibernate.show_sql">true</prop>
 	        </props>
 	    </property>
