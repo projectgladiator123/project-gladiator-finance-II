@@ -62,27 +62,24 @@ public void installmentPaymentEntry(int installmentId) {
 	
 	Installments installment = genericRepository.fetch(Installments.class,installmentId);
 	int purchaseId=installment.getPurchases().getId();
-	System.out.println(purchaseId);
 	Purchases purchase = genericRepository.fetch(Purchases.class,purchaseId);
 	double amountPaid =	(purchase.getRemainingAmount()/purchase.getInstallmentsRemaining());
 	purchase.setRemainingAmount(purchase.getRemainingAmount() - amountPaid);
     purchase.setInstallmentsRemaining(purchase.getInstallmentsRemaining()-1);
    
    List<Installments> installments =purchase.getInstallments();
-   System.out.println("###########");
    for (Installments installments2 : installments) {
-	   System.out.println("aaaaaaaaaaaaa");
 	   if(installments2.getInstallmentId()==installmentId) {
-		   System.out.println("************");
+		   
 		   installments2.setAmountPaid(amountPaid);
 	       installments2.setPaymentDate(LocalDate.now());
 	       installments2.setStatus("paid");
 	   }
 	
-}
-   
+}    
    purchase.setInstallments(installments);
    genericRepository.store(purchase);
+
    
   
 	
