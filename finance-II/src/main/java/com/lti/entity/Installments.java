@@ -8,7 +8,8 @@ import javax.persistence.*;
 public class Installments {
 	
 	  @Id
-	  @GeneratedValue
+	  @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "my_custom_installment_seq")
+		@SequenceGenerator(sequenceName = "installment_seq",allocationSize = 1,name = "my_custom_installment_seq")
 	  @Column(name="Id")
 	  private int installmentId;
 	  

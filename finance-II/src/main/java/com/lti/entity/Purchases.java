@@ -7,10 +7,12 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -21,8 +23,9 @@ public class Purchases {
 
 	
 	@Id
-	@GeneratedValue
-	@Column(name="Id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "my_customer_purchase_seq")
+	@SequenceGenerator(sequenceName = "purchase_seq",allocationSize = 1,name = "my_customer_purchase_seq")
+    @Column(name="Id")
 	private int id;
 	
 	
@@ -55,7 +58,7 @@ public class Purchases {
 	
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "purchases", cascade = CascadeType.MERGE)
+	@OneToMany(mappedBy = "purchases", cascade = CascadeType.ALL)
 	private List<Installments> installments;
 	
 	
