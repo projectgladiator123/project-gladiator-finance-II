@@ -12,7 +12,7 @@ public interface ProductReviewService {
 	public List<ProductReview> fetchbyProduct(int productId);
 	
 	public void deleteUserReview(int userId);
-	
-	
+
+    public ProductReview addNewReview(ProductReview productReview);
 
 }

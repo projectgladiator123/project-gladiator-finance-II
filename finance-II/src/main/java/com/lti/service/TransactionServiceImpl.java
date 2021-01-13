@@ -27,91 +27,62 @@ public class TransactionServiceImpl implements TransactionService {
 public void transactionEntry(int userId, int productId, int tenurePeriodOpted) {
 		
 		Registration registration = genericRepository.fetch(Registration.class,userId);
-		
-		//long cardNo=registration.getEmiCard().getCardNo();
-		
 		EMICard emiCard=  dashBoardRepository.fetchCardByUserId(userId);
-//		System.out.println(emiCard.getCardNo());
-		System.out.println(emiCard.getCardNo());
-		System.out.println(userId);
-		System.out.println(tenurePeriodOpted);
-		System.out.println(productId);
 		Product product = genericRepository.fetch(Product.class,productId);
-		System.out.println(product.getProductName());
 		double remainingAmount= product.getProductPrice();
-		System.out.println(remainingAmount);
+		
 		Purchases purchases = new Purchases();
 		purchases.setDateOfPurchase(LocalDate.now());
 		purchases.setTenurePeriodOpted(tenurePeriodOpted);
 		purchases.setInstallmentsRemaining(tenurePeriodOpted);
 		purchases.setRemainingAmount(remainingAmount);
-		//purchases.setEmiCard(emiCard);
+		purchases.setEmiCard(emiCard);
 		purchases.setRegistration(registration);
 		purchases.setProduct(product);
+		
+		
 		List<Installments> installments = new ArrayList<Installments>();
 		
-		Installments installment = new Installments();
+		
+		
 		for(int i= 0;i<tenurePeriodOpted;i++) {
+			Installments installment = new Installments();
 			installment.setAmountPaid(0);
 			installment.setDueDate(LocalDate.now().plusMonths(i+1));
 			installment.setPaymentDate(null);
 			installment.setStatus("unpaid");
 			installment.setPurchases(purchases);
-			installments.add(installment);
-			System.out.println("******");
-//			genericRepository.store(installment);
-			
+			installments.add(installment);			
 		}
 		purchases.setInstallments(installments);
-		
-		
 		genericRepository.store(purchases);
-		
-		
-		
 	}
+
+public void installmentPaymentEntry(int installmentId) {
 	
-//	public void transactionEntry(int userId, int productId, int tenurePeriodOpted) {
-//		
-//		Registration registration = genericRepository.fetch(Registration.class,userId);
-//		
-//		long cardNo=registration.getEmiCard().getCardNo();
-//		
-//		EMICard emiCard=  genericRepository.fetch(EMICard.class,cardNo);
-//		
-//		Product product = genericRepository.fetch(Product.class,productId);
-//		double remainingAmount= product.getProductPrice();
-//		
-//		Purchases purchases = new Purchases();
-//		purchases.setDateOfPurchase(LocalDate.now());
-//		purchases.setTenurePeriodOpted(tenurePeriodOpted);
-//		purchases.setInstallmentsRemaining(tenurePeriodOpted);
-//		purchases.setRemainingAmount(remainingAmount);
-//		purchases.setEmiCard(emiCard);
-//		purchases.setRegistration(registration);
-//		purchases.setProduct(product);
-//		List<Installments> installments = new ArrayList();
-//		
-//		Installments installment = new Installments();
-//		for(int i= 0;i<tenurePeriodOpted;i++) {
-//			installment.setAmountPaid(0);
-//			installment.setDueDate(LocalDate.now().plusMonths(i+1));
-//			installment.setPaymentDate(null);
-//			installment.setStatus("unpaid");
-//			installment.setPurchases(purchases);
-//			installments.add(installment);
-//			genericRepository.store(installment);
-//			
-//		}
-//		purchases.setInstallments(installments);
-//		
-//		
-//		genericRepository.store(purchases);
-//		
-//		
-//		
-//	}
-//
-//	
+	Installments installment = genericRepository.fetch(Installments.class,installmentId);
+	int purchaseId=installment.getPurchases().getId();
+	Purchases purchase = genericRepository.fetch(Purchases.class,purchaseId);
+	double amountPaid =	(purchase.getRemainingAmount()/purchase.getInstallmentsRemaining());
+	purchase.setRemainingAmount(purchase.getRemainingAmount() - amountPaid);
+    purchase.setInstallmentsRemaining(purchase.getInstallmentsRemaining()-1);
+   
+   List<Installments> installments =purchase.getInstallments();
+   for (Installments installments2 : installments) {
+	   if(installments2.getInstallmentId()==installmentId) {
+		   
+		   installments2.setAmountPaid(amountPaid);
+	       installments2.setPaymentDate(LocalDate.now());
+	       installments2.setStatus("paid");
+	   }
+	
+}    
+   purchase.setInstallments(installments);
+   genericRepository.store(purchase);
+
+   
+  
+	
+}
 	
 }

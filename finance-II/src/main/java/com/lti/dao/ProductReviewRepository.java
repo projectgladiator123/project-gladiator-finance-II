@@ -9,6 +9,7 @@ import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.lti.entity.ProductReview;
@@ -18,6 +19,9 @@ public class ProductReviewRepository extends GenericRepository{
 
 		@PersistenceContext
 		EntityManager entityManager;
+		
+		@Autowired
+		GenericRepository genericRepository;
 		
 		@Transactional
 		public void deleteReview(int reviewId) {
@@ -32,8 +36,15 @@ public class ProductReviewRepository extends GenericRepository{
 		}
 		@SuppressWarnings("unchecked")
 		public List<ProductReview> fetchReviewbyProduct(int productId){
-			return entityManager.createQuery("select p from ProductReview p where p.product.productId = :rm").setParameter("rm",productId).getResultList();
+			return entityManager.createQuery("select p from ProductReview p where p.product.productId = :productId").setParameter("productId",productId)
+					.getResultList();
 			
+		}
+		
+		
+		public ProductReview addReview(ProductReview productReview) {
+			
+			return (ProductReview) genericRepository.store(productReview);
 		}
 
 }

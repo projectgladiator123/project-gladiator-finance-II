@@ -28,7 +28,12 @@ public class ProductReviewImpl implements ProductReviewService {
 		
 	}
 
-	
+
+	public ProductReview addNewReview(ProductReview productReview) {
+		// TODO Auto-generated method stub
+		return productReviewRepository.addReview(productReview);
+	}
+
 
 }
 	
