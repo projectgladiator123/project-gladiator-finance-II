@@ -16,6 +16,11 @@ public class ProductRepo extends GenericRepository {
 		
 		return entityManager.createQuery("select p from Product p").getResultList();
 	}
+//	 public Product fetchProductdetailsByProductId(int productId) {
+//		 return (Product) entityManager.createQuery("select p from Product p where p.productId =: productId")
+//					.setParameter("productId", productId)
+//					.getSingleResult();
+//	 }
 	
 	
 }

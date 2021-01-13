@@ -23,4 +23,9 @@ public class ProductController {
 		
 		return productservice.fetchProductdetails();
 	}
+//	@GetMapping("/productfind-info")
+//public Product fetchProductDetails(int productId){
+//		
+//		return productservice.fetchProductdetailsByProductId(productId);
+//	}
 }

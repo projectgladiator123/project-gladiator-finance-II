@@ -23,4 +23,5 @@ public class ProductInfoController {
 		
 		return productInfoService.fetchProductdetailsByProductId(productId);
 	}
+	
 }

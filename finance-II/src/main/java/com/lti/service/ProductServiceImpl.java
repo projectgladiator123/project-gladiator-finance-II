@@ -2,6 +2,8 @@ package com.lti.service;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,5 +21,10 @@ public class ProductServiceImpl implements ProductService {
 		
 		return productrepo.fetchProductInfo();
 	}
+//	public Product fetchProductdetailsByProductId(int productId) {
+//		return productrepo.fetchProductdetailsByProductId(productId);
+//	
+//
+//}
 
 }

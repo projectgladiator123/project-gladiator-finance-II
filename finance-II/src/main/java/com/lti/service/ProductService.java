@@ -7,4 +7,6 @@ import com.lti.entity.Product;
 public interface ProductService {
 
 	public List<Product> fetchProductdetails();
+//public Product fetchProductdetailsByProductId(int productId);
+	
 }
