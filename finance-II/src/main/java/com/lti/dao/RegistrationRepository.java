@@ -7,14 +7,12 @@ import com.lti.entity.Registration;
 
 @Repository
 public class RegistrationRepository extends GenericRepository {
-	@PersistenceContext
-	EntityManager entityManager;
-	
-	@Transactional
-	public int registerUser(Registration registration) {
-		Registration newreg=entityManager.merge(registration);
-		return newreg.getUserId();
+
+	//@Transactional
+	//public int registerUser(Registration registration) {
+		//Registration newreg=entityManager.merge(registration);
+		//return newreg.getUserId();
 	}
 	
 
-}
+

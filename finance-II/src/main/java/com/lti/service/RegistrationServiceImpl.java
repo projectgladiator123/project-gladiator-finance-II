@@ -1,16 +1,20 @@
 package com.lti.service;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-
-import com.lti.dao.RegistrationRepository;
+import com.lti.dao.GenericRepository;
 import com.lti.entity.Registration;
-@Service
+
+@Component
 public class RegistrationServiceImpl implements RegistrationService{
 	@Autowired
-	RegistrationRepository repo;
+	private GenericRepository genericRepository;
+	
 	public int register(Registration registration) {
-		return repo.registerUser(registration);
+			Registration updatedregister = (Registration) genericRepository.store(registration);
+			
+			return updatedregister.getUserId();
+		}
 		
 	}
-}
+

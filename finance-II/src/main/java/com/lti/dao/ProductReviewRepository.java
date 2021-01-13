@@ -23,8 +23,8 @@ public class ProductReviewRepository extends GenericRepository{
 		public void deleteReview(int reviewId) {
 			entityManager.createQuery("delete from ProductReview pr where pr.reviewId = :reviewId").setParameter("reviewId", reviewId).executeUpdate();
 	
-	
 		}
+		
 		@SuppressWarnings("unchecked")
 		public List<ProductReview> fetchReviewbyUser(int userId) {
 			return entityManager.createQuery("select p from ProductReview p where p.registration.userId =: rt").setParameter("rt",userId).getResultList();
