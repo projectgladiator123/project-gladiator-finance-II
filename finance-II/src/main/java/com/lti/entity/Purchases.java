@@ -55,7 +55,7 @@ public class Purchases {
 	
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "purchases", cascade = CascadeType.MERGE)
+	@OneToMany(mappedBy = "purchases", cascade = CascadeType.ALL)
 	private List<Installments> installments;
 	
 	
