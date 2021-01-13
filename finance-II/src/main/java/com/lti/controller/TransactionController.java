@@ -20,18 +20,12 @@ public class TransactionController {
 	
 	@PostMapping("/transaction")
 	public  void getBuyingStatus(@RequestBody Purchase purchase) {
-		
-		    transactionService.transactionEntry(purchase.getUserId(), purchase.getProductId(),purchase.getTenurePeriodOpted());
-		    
-		
+		transactionService.transactionEntry(purchase.getUserId(), purchase.getProductId(),purchase.getTenurePeriodOpted());
 	}
 	
 	@GetMapping("/installment-payment")
-	public  void gettingPaymentUpdates(@RequestParam("installmentId") int installmentId) {
+	public  void gettingPaymentUpdates(int installmentId) {
 		transactionService.installmentPaymentEntry(installmentId);
-		
-		    
-		
 	}
 	
 	

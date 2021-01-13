@@ -62,30 +62,27 @@ public void installmentPaymentEntry(int installmentId) {
 	
 	Installments installment = genericRepository.fetch(Installments.class,installmentId);
 	int purchaseId=installment.getPurchases().getId();
-	Purchases purchases = genericRepository.fetch(Purchases.class,purchaseId);
-	
-   double amountPaid =	(purchases.getRemainingAmount()/purchases.getInstallmentsRemaining());
-   purchases.setRemainingAmount(purchases.getRemainingAmount() - amountPaid);
-  // double installmentsRemaining1 = (purchases.getRemainingAmount()/amountPaid);
-  // int installmentsRemaining = (int)installmentsRemaining1;
-   purchases.setInstallmentsRemaining(purchases.getInstallmentsRemaining()-1);
-//   installment.setAmountPaid(amountPaid);
-//   installment.setPaymentDate(LocalDate.now());
-//   installment.setStatus("paid");
+	System.out.println(purchaseId);
+	Purchases purchase = genericRepository.fetch(Purchases.class,purchaseId);
+	double amountPaid =	(purchase.getRemainingAmount()/purchase.getInstallmentsRemaining());
+	purchase.setRemainingAmount(purchase.getRemainingAmount() - amountPaid);
+    purchase.setInstallmentsRemaining(purchase.getInstallmentsRemaining()-1);
    
-   List<Installments> installments =purchases.getInstallments();
+   List<Installments> installments =purchase.getInstallments();
+   System.out.println("###########");
    for (Installments installments2 : installments) {
+	   System.out.println("aaaaaaaaaaaaa");
 	   if(installments2.getInstallmentId()==installmentId) {
-		   
-	         installments2.setAmountPaid(amountPaid);
-	        installments2.setPaymentDate(LocalDate.now());
-	           installments2.setStatus("paid");
+		   System.out.println("************");
+		   installments2.setAmountPaid(amountPaid);
+	       installments2.setPaymentDate(LocalDate.now());
+	       installments2.setStatus("paid");
 	   }
 	
 }
    
-   purchases.setInstallments(installments);
-   genericRepository.store(purchases);
+   purchase.setInstallments(installments);
+   genericRepository.store(purchase);
    
   
 	
