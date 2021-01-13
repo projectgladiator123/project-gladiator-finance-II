@@ -3,9 +3,11 @@ package com.lti.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -13,7 +15,8 @@ import javax.persistence.Table;
 public class ProductReview {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "my_customer_productreview_seq")
+	@SequenceGenerator(sequenceName = "productreview_seq",allocationSize = 1,name = "my_customer_productreview_seq")
 	@Column(name="Review_Id")
 	private int reviewId;
 	

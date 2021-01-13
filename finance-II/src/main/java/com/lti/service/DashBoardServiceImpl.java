@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.lti.dao.DashBoardRepository;
 import com.lti.entity.EMICard;
+import com.lti.entity.Installments;
 import com.lti.entity.Purchases;
 
 @Service
@@ -21,6 +22,10 @@ public class DashBoardServiceImpl implements DashBoardService{
 
 	public List<Purchases> getPurchaseHistory(int userId) {
 		return dashBoardRepository.fetchPurchaseHistory(userId);
+	}
+
+	public List<Installments> getInstallmentHistory(int id) {
+		return dashBoardRepository.fetchInstallmentHistory(id);
 	}
 	
 }
