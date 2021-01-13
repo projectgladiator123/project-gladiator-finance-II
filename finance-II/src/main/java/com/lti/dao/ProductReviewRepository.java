@@ -2,16 +2,15 @@ package com.lti.dao;
 
 import java.util.List;
 
-import javax.management.Query;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.lti.dto.Review;
+import com.lti.entity.Product;
 import com.lti.entity.ProductReview;
 import com.lti.entity.Registration;
 @Repository
@@ -42,9 +41,20 @@ public class ProductReviewRepository extends GenericRepository{
 		}
 		
 		
-		public ProductReview addReview(ProductReview productReview) {
+		public void addReview(Review review) {
 			
-			return (ProductReview) genericRepository.store(productReview);
+			ProductReview productReview = new ProductReview();
+			productReview.setRating(review.getProductReview().getRating());
+			productReview.setReview(review.getProductReview().getReview());
+			
+			Registration registration = genericRepository.fetch(Registration.class, review.getUserId());
+			productReview.setRegistration(registration);
+			
+			Product product = genericRepository.fetch(Product.class, review.getProductId());
+			productReview.setProduct(product);
+			
+			genericRepository.store(productReview); 
+			
 		}
 
 }

@@ -72,7 +72,7 @@ private EMICard emiCard;
 private List<Purchases> purchases; 
 
 @JsonIgnore
-@OneToMany(mappedBy = "registration")
+@OneToMany(mappedBy = "registration" , cascade = CascadeType.ALL)
 private List<ProductReview> reviews;
 
 public int getUserId() {

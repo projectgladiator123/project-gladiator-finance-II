@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lti.dto.Review;
 import com.lti.entity.ProductReview;
 import com.lti.service.ProductReviewService;
 
@@ -35,8 +36,8 @@ public class ProductReviewController {
 	}
 
 	@PostMapping("/add-review")
-	public @ResponseBody ProductReview addReviewFromUser(@RequestBody ProductReview productReview) {
-		return productReviewService.addNewReview(productReview);
+	public void addReviewFromUser(@RequestBody Review review) {
+		productReviewService.addNewReview(review);
 	}
 }
 

@@ -2,6 +2,7 @@ package com.lti.service;
 
 import java.util.List;
 
+import com.lti.dto.Review;
 import com.lti.entity.ProductReview;
 
 
@@ -13,6 +14,6 @@ public interface ProductReviewService {
 	
 	public void deleteUserReview(int userId);
 
-    public ProductReview addNewReview(ProductReview productReview);
+    public void addNewReview(Review review);
 
 }

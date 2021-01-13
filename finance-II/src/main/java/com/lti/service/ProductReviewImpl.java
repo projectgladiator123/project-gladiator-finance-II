@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lti.dao.ProductReviewRepository;
+import com.lti.dto.Review;
 import com.lti.entity.ProductReview;
 
 @Service
@@ -29,9 +30,8 @@ public class ProductReviewImpl implements ProductReviewService {
 	}
 
 
-	public ProductReview addNewReview(ProductReview productReview) {
-		// TODO Auto-generated method stub
-		return productReviewRepository.addReview(productReview);
+	public void addNewReview(Review review) {
+		productReviewRepository.addReview(review);
 	}
 
 

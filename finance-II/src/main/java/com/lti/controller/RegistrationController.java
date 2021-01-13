@@ -11,7 +11,7 @@ import com.lti.dto.LoginStatus;
 import com.lti.dto.RegisterStatus;
 import com.lti.dto.Status.StatusType;
 import com.lti.entity.Registration;
-import com.lti.exception.CustomerServiceException;
+import com.lti.exception.LoginServiceException;
 import com.lti.service.RegistrationService;
 
 @RestController
@@ -32,7 +32,7 @@ public class RegistrationController {
 			status.setRegisteredCustomerId(id);
 			return status;
 
-		} catch (CustomerServiceException e) {
+		} catch (LoginServiceException e) {
 			RegisterStatus status = new RegisterStatus();
 			status.setStatus(StatusType.FAILED);
 			status.setMessage(e.getMessage());
