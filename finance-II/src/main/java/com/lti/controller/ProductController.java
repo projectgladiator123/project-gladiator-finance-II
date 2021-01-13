@@ -5,23 +5,27 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lti.entity.Product;
 import com.lti.service.ProductInfoService;
+import com.lti.service.ProductService;
 
 @RestController
 @CrossOrigin
-public class ProductInfoController {
+public class ProductController {
 
 	@Autowired
-	private ProductInfoService productInfoService;
+	private ProductService productservice;
 	
-	@GetMapping("/product-info")
-	public Product fetchProductDetails(int productId){
+	@GetMapping("/productlist-info")
+	public List<Product> fetchProductDetails(){
 		
-		return productInfoService.fetchProductdetailsByProductId(productId);
+		return productservice.fetchProductdetails();
 	}
-	
+//	@GetMapping("/productfind-info")
+//public Product fetchProductDetails(int productId){
+//		
+//		return productservice.fetchProductdetailsByProductId(productId);
+//	}
 }
