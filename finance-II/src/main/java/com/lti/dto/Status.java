@@ -6,7 +6,7 @@ public class Status {
 	private String message;
 	
 	public static enum StatusType{
-		SUCESS,FAILED;
+		SUCESS,FAILED,InstallmentPaid;
 	}
 
 	public StatusType getStatus() {

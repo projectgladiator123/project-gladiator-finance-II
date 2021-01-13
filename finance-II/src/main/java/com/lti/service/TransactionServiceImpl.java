@@ -82,10 +82,10 @@ public void installmentPaymentEntry(int installmentId) {
 	           installments2.setStatus("paid");
 	   }
 	
-}
+}    
    
    purchases.setInstallments(installments);
-   genericRepository.store(purchases);
+    genericRepository.store(purchases);
    
   
 	
