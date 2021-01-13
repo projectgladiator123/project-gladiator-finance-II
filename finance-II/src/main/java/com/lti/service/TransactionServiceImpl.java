@@ -57,5 +57,32 @@ public void transactionEntry(int userId, int productId, int tenurePeriodOpted) {
 		purchases.setInstallments(installments);
 		genericRepository.store(purchases);
 	}
+
+public void installmentPaymentEntry(int installmentId) {
+	
+	Installments installment = genericRepository.fetch(Installments.class,installmentId);
+	int purchaseId=installment.getPurchases().getId();
+	Purchases purchase = genericRepository.fetch(Purchases.class,purchaseId);
+	double amountPaid =	(purchase.getRemainingAmount()/purchase.getInstallmentsRemaining());
+	purchase.setRemainingAmount(purchase.getRemainingAmount() - amountPaid);
+    purchase.setInstallmentsRemaining(purchase.getInstallmentsRemaining()-1);
+   
+   List<Installments> installments =purchase.getInstallments();
+   for (Installments installments2 : installments) {
+	   if(installments2.getInstallmentId()==installmentId) {
+		   
+		   installments2.setAmountPaid(amountPaid);
+	       installments2.setPaymentDate(LocalDate.now());
+	       installments2.setStatus("paid");
+	   }
+	
+}    
+   purchase.setInstallments(installments);
+   genericRepository.store(purchase);
+
+   
+  
+	
+}
 	
 }
