@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lti.dto.Purchase;
@@ -21,12 +22,25 @@ public class TransactionController {
 	private TransactionService transactionService;
 	
 	@PostMapping("/transaction")
-	public  void getBuyingStatus(@RequestBody Purchase purchase) {
-		transactionService.transactionEntry(purchase.getUserId(), purchase.getProductId(),purchase.getTenurePeriodOpted());
+	public  @ResponseBody Status getBuyingStatus(@RequestBody Purchase purchase) {
+		
+		if(transactionService.transactionEntry(purchase.getUserId(), purchase.getProductId(),purchase.getTenurePeriodOpted())) {
+			 Status status = new Status();
+			 status.setStatus(StatusType.SUCESS);
+			 status.setMessage("Payment Successfull");
+			 return status;
+		}
+		else {
+			Status status = new Status();
+			 status.setStatus(StatusType.FAILED);
+			 status.setMessage("Payment Rejected");
+			 return status;
+			
+		}
 	}
 	
 	@GetMapping("/installment-payment")
-	public  Status gettingPaymentUpdates(@RequestParam("installmentId") int installmentId) {
+	public @ResponseBody Status gettingPaymentUpdates(@RequestParam("installmentId") int installmentId) {
 		transactionService.installmentPaymentEntry(installmentId);		
 		    Status status = new Status();
 		    status.setStatus(StatusType.InstallmentPaid);
