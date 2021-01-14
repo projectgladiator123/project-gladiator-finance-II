@@ -27,7 +27,7 @@ public class AdminDetailsServiceImpl implements AdminDetailsService {
 						int id = adminRepository.findByUserNameAndPassword(username, password);
 						Admin admin= adminRepository.fetch(Admin.class, id);
 
-						return admin;
+						return admin;//EmptyResultDataAccessException
 					}
 
 				} catch (NoResultException e) {

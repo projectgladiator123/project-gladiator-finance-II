@@ -27,7 +27,7 @@ public class TransactionController {
 		if(transactionService.transactionEntry(purchase.getUserId(), purchase.getProductId(),purchase.getTenurePeriodOpted())) {
 			 Status status = new Status();
 			 status.setStatus(StatusType.SUCESS);
-			 status.setMessage("Payment Successfull.");
+			 status.setMessage("Payment Successfull. Bought succesfully. Product Will be delkiverd ");
 			 return status;
 		}
 		else {

@@ -1,8 +1,11 @@
 package com.lti.dao;
 
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Repository;
 
 @Repository
+@Transactional
 public class LoginRepository extends GenericRepository {
 	
 	

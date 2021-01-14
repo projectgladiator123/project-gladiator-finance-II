@@ -31,7 +31,10 @@ public class LoginServiceImpl implements LoginService {
 					else {
 				     throw new LoginServiceException("user is not activated");					
 					}
-				
+
+					
+					//EmptyResultDataAccessException
+
 				}
 
 			} catch (NoResultException e) {
