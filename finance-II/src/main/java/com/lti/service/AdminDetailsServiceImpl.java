@@ -1,5 +1,7 @@
 package com.lti.service;
 
+import javax.persistence.NoResultException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,10 +27,10 @@ public class AdminDetailsServiceImpl implements AdminDetailsService {
 						int id = adminRepository.findByUserNameAndPassword(username, password);
 						Admin admin= adminRepository.fetch(Admin.class, id);
 
-						return admin;//EmptyResultDataAccessException
+						return admin;
 					}
 
-				} catch (Exception e) {
+				} catch (NoResultException e) {
 
 					throw new LoginServiceException("Incorrect username/password");
 
