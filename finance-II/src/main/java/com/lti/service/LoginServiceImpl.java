@@ -1,5 +1,7 @@
 package com.lti.service;
 
+import javax.persistence.NoResultException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,10 +40,10 @@ public class LoginServiceImpl implements LoginService {
 						
 					}
 					
-				
+					//EmptyResultDataAccessException
 				}
 
-			} catch (Exception e) {
+			} catch (NoResultException e) {
 
 				throw new LoginServiceException("Incorrect username/password");
 
