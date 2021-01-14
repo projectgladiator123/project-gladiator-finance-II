@@ -27,11 +27,6 @@
     <task:scheduler id="printingScheduler" />
     
 
-     
-    
-
-
-
 	<bean name="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" init-method="createDataSource" destroy-method="close">
 	    <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 	    <property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl" />
@@ -67,8 +62,8 @@
 	    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
         <property name="host" value="smtp.gmail.com"/>
         <property name="port" value="25"/>
-        <property name="username" value="guptasubhajit272@gmail.com"/>
-        <property name="password" value="Subhajit@1999"/>
+        <property name="username" value="mailS"/>
+        <property name="password" value="password"/>
         <property name="javaMailProperties">
             <props>
                 <prop key="mail.transport.protocol">smtp</prop>
