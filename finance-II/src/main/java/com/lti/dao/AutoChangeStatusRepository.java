@@ -15,7 +15,9 @@ public class AutoChangeStatusRepository extends GenericRepository{
 	@PersistenceContext
 	EntityManager entityManager;
 	
-	public List<Installments> fetchAllInstallment(){
+
+	@SuppressWarnings("unchecked")
+   public List<Installments> fetchAllInstallment(){
 		
 		return entityManager.createQuery("select i from Installments i").getResultList();
 	}
