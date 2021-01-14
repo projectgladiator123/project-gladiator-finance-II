@@ -27,13 +27,13 @@ public class TransactionController {
 		if(transactionService.transactionEntry(purchase.getUserId(), purchase.getProductId(),purchase.getTenurePeriodOpted())) {
 			 Status status = new Status();
 			 status.setStatus(StatusType.SUCESS);
-			 status.setMessage("Payment Successfull");
+			 status.setMessage("Payment Successfull.");
 			 return status;
 		}
 		else {
 			Status status = new Status();
 			 status.setStatus(StatusType.FAILED);
-			 status.setMessage("Payment Rejected");
+			 status.setMessage("Payment Rejected !!!!! Not enough credits.");
 			 return status;
 			
 		}
