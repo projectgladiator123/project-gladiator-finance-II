@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lti.dto.Status;
 import com.lti.entity.Registration;
 import com.lti.service.UserDetailsService;
 
@@ -32,6 +33,13 @@ public class UserDetailsController {
 	@RequestMapping("/user-status-update")
 	public void update(int userId) {		
 		userDetailsService.updateStatus(userId);		
+	}
+	
+	@GetMapping("/addCard")
+	public long addCard(int userId, String cardType) {
+		
+		return userDetailsService.addCard(userId,cardType);
+		
 	}
 
 }

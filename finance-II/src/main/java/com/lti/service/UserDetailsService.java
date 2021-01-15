@@ -9,5 +9,6 @@ public interface UserDetailsService {
 	public List<Registration> showAll();
 	public void delete(int userId);
 	public void updateStatus(int userId);
+	public long addCard(int userId, String cardType);
 
 }
