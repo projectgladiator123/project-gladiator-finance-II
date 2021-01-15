@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.lti.dao.AutoChangeStatusRepository;
 import com.lti.entity.Installments;
+import com.lti.entity.Purchases;
  
 @Component("due")
 public class AutoStatusUpdateService {
@@ -42,11 +43,16 @@ public class AutoStatusUpdateService {
 			}
 			else if(installment.getStatus().equalsIgnoreCase("due")) {
 				
+				Purchases purchase = autoChangeStatusRepository.fetch(Purchases.class, installment.getPurchases().getId());
+				purchase.setRemainingAmount(purchase.getRemainingAmount()*101/100);	
+				autoChangeStatusRepository.store(purchase);
+				
+				
 				SimpleMailMessage message = new SimpleMailMessage();
 				message.setFrom("guptasubhajit272@gmail.com");
 				message.setTo("99subhajit99gupta@gmail.com");
 				message.setSubject("Installment payment due.");
-				message.setText("email installment due ,still not paid for"+ LocalDate.now().compareTo(dueDate) + " days");
+				message.setText("email installment due ,still not paid for "+ LocalDate.now().compareTo(dueDate) + " days. Each day your remaining amount to be paid is fined by 1%.");
 				
 				mailSender.send(message);
 
