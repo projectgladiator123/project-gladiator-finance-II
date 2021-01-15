@@ -54,6 +54,9 @@ public boolean transactionEntry(int userId, int productId, int tenurePeriodOpted
 			emiCard.setBalance(emiCard.getBalance() - remainingAmount);
 			genericRepository.store(emiCard);
 			
+			product.setQuantity(product.getQuantity()-1);
+			genericRepository.store(product);
+			
 			Purchases purchases = new Purchases();
 			purchases.setDateOfPurchase(LocalDate.now());
 			purchases.setTenurePeriodOpted(tenurePeriodOpted);
@@ -116,7 +119,7 @@ public boolean transactionEntry(int userId, int productId, int tenurePeriodOpted
 			    {
 			        public void prepare(MimeMessage mimeMessage) throws Exception 
 			        {
-			            mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress("99subhajit99gupta@gmail.com"));
+			            mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(registration.getEmail()));
 			            mimeMessage.setFrom(new InternetAddress("guptasubhajit272@gmail.com"));
 			            mimeMessage.setSubject("Invoice");
 			            mimeMessage.setText("Purchase Succesfull");

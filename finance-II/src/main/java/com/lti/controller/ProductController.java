@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lti.entity.Product;
-import com.lti.service.ProductInfoService;
 import com.lti.service.ProductService;
 
 @RestController
@@ -23,9 +22,5 @@ public class ProductController {
 		
 		return productservice.fetchProductdetails();
 	}
-//	@GetMapping("/productfind-info")
-//public Product fetchProductDetails(int productId){
-//		
-//		return productservice.fetchProductdetailsByProductId(productId);
-//	}
+
 }
