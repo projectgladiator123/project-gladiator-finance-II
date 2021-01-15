@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 
 import com.lti.dao.AutoChangeStatusRepository;
 import com.lti.entity.Installments;
+import com.lti.entity.Purchases;
+import com.lti.entity.Registration;
  
 @Component("due")
 public class AutoStatusUpdateService {
@@ -26,6 +28,11 @@ public class AutoStatusUpdateService {
     	for (Installments installment : installments) {
     		
 			LocalDate dueDate = installment.getDueDate();
+			int purchaseId =installment.getPurchases().getId();
+			Purchases purchases=autoChangeStatusRepository.fetch(Purchases.class,purchaseId);
+			int userId=purchases.getRegistration().getUserId();
+			Registration registration=autoChangeStatusRepository.fetch(Registration.class,userId);
+			
 			
 			if(installment.getStatus().equalsIgnoreCase("unpaid")) {
 				if(dueDate.compareTo(LocalDate.now()) <= 0) {
@@ -33,7 +40,7 @@ public class AutoStatusUpdateService {
 					
 					SimpleMailMessage message = new SimpleMailMessage();
 					message.setFrom("guptasubhajit272@gmail.com");
-					message.setTo("99subhajit99gupta@gmail.com");
+					message.setTo(registration.getEmail());
 					message.setSubject("Installment payment due.");
 					message.setText("Installment payment last date today.");
 					
@@ -44,9 +51,9 @@ public class AutoStatusUpdateService {
 				
 				SimpleMailMessage message = new SimpleMailMessage();
 				message.setFrom("guptasubhajit272@gmail.com");
-				message.setTo("99subhajit99gupta@gmail.com");
+				message.setTo(registration.getEmail());
 				message.setSubject("Installment payment due.");
-				message.setText("email installment due ,still not paid for"+ LocalDate.now().compareTo(dueDate) + " days");
+				message.setText("email installment due ,still not paid for "+ LocalDate.now().compareTo(dueDate) + " days");
 				
 				mailSender.send(message);
 
