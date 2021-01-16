@@ -33,7 +33,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		userDetailsRepository.updateStatus(userId);		
 	}
 
-	@Override
 	public long addCard(int userId, String cardType) {
 		Registration registration = userDetailsRepository.fetch(Registration.class, userId);
 		
