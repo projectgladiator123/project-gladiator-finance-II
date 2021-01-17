@@ -29,7 +29,7 @@ public class ForgotPasswordController {
 		
 			Status status = new Status();
 			status.setStatus(StatusType.SUCESS);
-			status.setMessage(registration.getUsername()+"your password is recovered check your email account registered with the company");
+			status.setMessage(registration.getUsername()+" your password is recovered check your email account registered with the company");
 			return status;
 		}
 		catch (LoginServiceException e) {

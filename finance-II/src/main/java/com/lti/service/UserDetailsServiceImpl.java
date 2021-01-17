@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.lti.dao.UserDetailsRepository;
 import com.lti.entity.EMICard;
+import com.lti.entity.Product;
 import com.lti.entity.Registration;
 
 @Service
@@ -29,8 +30,32 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		userDetailsRepository.deleteUser(userId);		
 	}
 
+	public void deleteProduct(int productId) {
+		userDetailsRepository.deleteProduct(productId);
+	}
 	public void updateStatus(int userId) {
 		userDetailsRepository.updateStatus(userId);		
+	}
+	
+	public int updateProduct(Product product) {
+		Product updatedpdt = (Product)userDetailsRepository.store(product);
+		return updatedpdt.getProductId();
+	}
+	
+	public int saveProduct(Product product) {
+		Product product2 = new Product();
+		product2.setProductName(product.getProductName());
+		product2.setProductDetails(product.getProductDetails());
+		System.out.println(product.getProductPrice());
+		product2.setProductPrice(product.getProductPrice());
+		product2.setProductImage(product.getProductImage());
+		product2.setVendor(product.getVendor());
+		product2.setQuantity(product.getQuantity());
+		product2.setMaxTenure(product.getMaxTenure());
+		product2.setEligibility(product.getEligibility());
+		
+		Product updatedProduct = (Product) userDetailsRepository.store(product2);
+		return updatedProduct.getProductId();
 	}
 
 	public long addCard(int userId, String cardType) {
@@ -53,5 +78,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		mailSender.send(message);
 		return updatedEmiCard.getCardNo();
 	}
+
+	
+
+	
+	
+
 
 }

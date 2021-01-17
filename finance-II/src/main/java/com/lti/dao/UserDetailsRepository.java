@@ -31,4 +31,10 @@ public class UserDetailsRepository extends GenericRepository {
 		entityManager.createQuery("update Registration r set r.userStatus = :status  where r.userId = :userId").setParameter("userId", userId).setParameter("status", "activated").executeUpdate();
 	}
 
+	@Transactional
+	public void deleteProduct(int productId) {
+		entityManager.createQuery("delete from Product p where p.productId = :productId").setParameter("productId", productId).executeUpdate();
+		
+	}
+
 }
