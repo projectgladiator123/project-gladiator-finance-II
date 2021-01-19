@@ -33,5 +33,10 @@ public class DashBoardController {
 	public List<Installments> fetchInstallments(int id){
 		return dashBoardService.getInstallmentHistory(id);
 	}
+		
+	@GetMapping("/upgrade")
+	public void upgrade(long cardNo){
+		dashBoardService.upgrade(cardNo);
+	}
 
 }

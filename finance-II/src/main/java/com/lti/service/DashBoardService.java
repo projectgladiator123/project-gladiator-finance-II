@@ -14,5 +14,6 @@ public interface DashBoardService {
 	public EMICard getCard(int userId);
 	public List<Purchases> getPurchaseHistory(int userId);
 	public List<Installments> getInstallmentHistory(int id);
+	public void upgrade(long cardNo);
 
 }

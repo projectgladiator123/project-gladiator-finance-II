@@ -27,5 +27,15 @@ public class DashBoardServiceImpl implements DashBoardService{
 	public List<Installments> getInstallmentHistory(int id) {
 		return dashBoardRepository.fetchInstallmentHistory(id);
 	}
+
+	public void upgrade(long cardNo) {
+		
+		EMICard card =  dashBoardRepository.fetch(EMICard.class, cardNo);
+		if(card.getCardType().equalsIgnoreCase("gold")) {
+			card.setCardType("platinum");
+			card.setBalance(card.getBalance() + 50000);
+			dashBoardRepository.store(card);
+		}
+	}
 	
 }

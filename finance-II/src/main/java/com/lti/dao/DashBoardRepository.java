@@ -12,7 +12,7 @@ import com.lti.entity.Installments;
 import com.lti.entity.Purchases;
 
 @Repository
-public class DashBoardRepository {
+public class DashBoardRepository extends GenericRepository {
 	
 	@PersistenceContext
 	EntityManager entityManager;
